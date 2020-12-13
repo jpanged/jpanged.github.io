@@ -1,35 +1,19 @@
-<!-- Footer -->
-  <div id="footer">
-    <div class="container">
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    {% if site.data.ui-text[site.locale].follow_label %}
+      <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
+    {% endif %}
 
-      <!-- Footer List -->
-        <div id="contact">
-          <ul>
-            <li>
-              <a href="https://github.com/jpanged/" target="_blank">
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="mailto:jpang06@calpoly.edu" target="_blank">
-                Email
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/josiahpang" target="_blank">
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </div>
+    {% if site.footer.links %}
+      {% for link in site.footer.links %}
+        {% if link.label and link.url %}
+          <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
 
-
-        <!-- Copyright -->
-          <div id="copyright">
-            &copy; {{ site.title }}. All rights Reserved
-          </div>
-
-      </div>
-    </div>
-
+    <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
+  </ul>
 </div>
+
+<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}</div>
